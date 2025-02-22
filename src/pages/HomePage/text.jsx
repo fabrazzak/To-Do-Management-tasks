@@ -79,7 +79,7 @@ const HomePage = () => {
 
     // useEffect(() => {
     //     if (user?.uid) {
-    //         axios.get(`http://localhost:5000/tasks?email=${user.uid}`)
+    //         axios.get(`https://to-do-mangements.vercel.app/tasks?email=${user.uid}`)
     //             .then((res) => setTasks(res.data))
     //             .catch((err) => console.error("Error fetching tasks:", err));
     //     }
@@ -96,7 +96,7 @@ const HomePage = () => {
         };
 
         try {
-            const response = await axios.post("http://localhost:5000/tasks", newTask);
+            const response = await axios.post("https://to-do-mangements.vercel.app/tasks", newTask);
             setTasks((prevTasks) => [...prevTasks, response.data]);
             setTitle("");
             setDescription("");
@@ -116,7 +116,7 @@ const HomePage = () => {
         setTasks(updatedTasks);
 
         try {
-            await axios.put(`http://localhost:5000/tasks/${movedTask._id}`, { category: movedTask.category });
+            await axios.put(`https://to-do-mangements.vercel.app/tasks/${movedTask._id}`, { category: movedTask.category });
         } catch (error) {
             console.error("Error updating task:", error);
         } 

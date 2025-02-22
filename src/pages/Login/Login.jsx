@@ -27,7 +27,7 @@ const Login = () => {
             };
 
             // ✅ FIX: Handle API response
-            const res = await axios.post("http://localhost:5000/users", userData);
+            const res = await axios.post("https://to-do-mangements.vercel.app/users", userData);
             console.log(res.data);
 
             // ✅ FIX: Improved navigation handling

@@ -3,6 +3,7 @@ import axios from "axios";
 import { AuthContext } from "../../components/authProvider/AuthProvider";
 import Column from "./Column";
 import { DndContext } from "@dnd-kit/core";
+import { Helmet } from "react-helmet-async";
 
 const columns = [
     { id: "to-do", title: "To Do" },
@@ -18,7 +19,7 @@ const HomePage = () => {
 
     useEffect(() => {
         if (user?.uid) {
-            axios.get(`http://localhost:5000/tasks?email=${user.uid}`)
+            axios.get(`https://to-do-mangements.vercel.app/tasks?email=${user.uid}`)
                 .then((res) => {
                     console.log("API Response:", res.data);  // Debugging
                     setTasks(res.data);
@@ -38,7 +39,7 @@ const HomePage = () => {
         };
 
         try {
-            const response = await axios.post("http://localhost:5000/tasks", newTask);
+            const response = await axios.post("https://to-do-mangements.vercel.app/tasks", newTask);
             setTasks((prevTasks) => [...prevTasks, response.data]);
             setTitle("");
             setDescription("");
@@ -62,7 +63,7 @@ const HomePage = () => {
         );
 
         try {
-            await axios.put(`http://localhost:5000/tasks/${taskId}`, { category: newCategory });
+            await axios.put(`https://to-do-mangements.vercel.app/tasks/${taskId}`, { category: newCategory });
         } catch (error) {
             console.error("Error updating task category:", error);
         }
@@ -74,8 +75,12 @@ const HomePage = () => {
                 <h2 className="text-3xl font-bold mb-6 text-center ">📌 Task Board</h2>
                 <button onClick={() => document.getElementById("my_modal_3").showModal()} className="btn btn-neutral my-6">
                     Add Task
-                </button> 
-              
+                </button>
+
+                <Helmet>
+                    <title> Home | To Do Task Management</title>
+                </Helmet>
+
 
                 <div className="grid md:grid-cols-3 gap-6">
                     <DndContext onDragEnd={handleDragEnd}>

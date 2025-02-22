@@ -3,6 +3,7 @@ import { AuthContext } from "../../components/authProvider/AuthProvider";
 import axios from "axios";
 import SingleTaskCard from "./SingleTaskCard";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const ManageAllTask = () => {
     const [tasks, setTasks] = useState([]);
@@ -14,7 +15,7 @@ const ManageAllTask = () => {
     useEffect(() => {
         if (user?.uid) {
             axios
-                .get(`http://localhost:5000/tasks?email=${user.uid}`)
+                .get(`https://to-do-mangements.vercel.app/tasks?email=${user.uid}`)
                 .then((res) => {
                     console.log("API Response:", res.data);
                     setTasks(res.data);
@@ -41,7 +42,7 @@ const ManageAllTask = () => {
                     icon: "success"
                 });
                 axios
-                    .delete(`http://localhost:5000/tasks/${id}`)
+                    .delete(`https://to-do-mangements.vercel.app/tasks/${id}`)
                     .then((res) => {
                         setTasks((prevTasks) => prevTasks.filter((task) => task._id !== id));
                     })
@@ -68,7 +69,7 @@ const ManageAllTask = () => {
         };
 
         try {
-            const response = await axios.put(`http://localhost:5000/tasks/${selectedTask._id}`, updatedTask);
+            const response = await axios.put(`https://to-do-mangements.vercel.app/tasks/${selectedTask._id}`, updatedTask);
             setTasks((prevTasks) =>
                 prevTasks.map((task) =>
                     task._id === selectedTask._id ? { ...task, ...updatedTask } : task
@@ -87,7 +88,9 @@ const ManageAllTask = () => {
         <div className="bg-gray-50 min-h-screen">
             <div className="container mx-auto p-6">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">All Tasks ({tasks.length})</h2>
-
+                <Helmet>
+                    <title> All Task | To Do Task Management</title>
+                </Helmet>
                 {/* Task List */}
                 <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     {tasks.length === 0 ? (

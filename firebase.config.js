@@ -3,15 +3,17 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAMZIm4xfHIsFAzMdiE38HOIRLnqsjPOMA",
-    authDomain: "to-do-management-96aca.firebaseapp.com",
-    projectId: "to-do-management-96aca",
-    storageBucket: "to-do-management-96aca.firebasestorage.app",
-    messagingSenderId: "1025587631987",
-    appId: "1:1025587631987:web:562b19c7a03c807abf9706"
-  };
+  apiKey: "AIzaSyDmQ-oGP7TUijgKXXlCDk8jxBPDpP0lg8M",
+  authDomain: "to-do-967be.firebaseapp.com",
+  projectId: "to-do-967be",
+  storageBucket: "to-do-967be.firebasestorage.app",
+  messagingSenderId: "192535460549",
+  appId: "1:192535460549:web:e9aadc574388e39f3b4eac"
+};
+
 
 const app = initializeApp(firebaseConfig);
+
 const auth = getAuth(app);
 
 export default auth
